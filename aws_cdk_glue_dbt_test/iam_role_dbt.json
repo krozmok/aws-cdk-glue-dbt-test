@@ -1,0 +1,98 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Read_and_write_databases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:BatchCreatePartition",
+                "glue:CreatePartitionIndex",
+                "glue:DeleteDatabase",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:DeleteTableVersion",
+                "glue:UpdateTable",
+                "glue:DeleteTable",
+                "glue:DeletePartitionIndex",
+                "glue:GetTableVersion",
+                "glue:UpdateColumnStatisticsForTable",
+                "glue:CreatePartition",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "glue:UpdateColumnStatisticsForPartition",
+                "glue:CreateDatabase",
+                "glue:BatchDeleteTableVersion",
+                "glue:BatchDeleteTable",
+                "glue:DeletePartition",
+                "glue:GetUserDefinedFunctions"
+            ],
+            "Resource": [
+                "arn:aws:glue:us-east-2:481133585213:catalog",
+                "arn:aws:glue:us-east-2:481133585213:table/vigia_datalake_database_staging/*",
+                "arn:aws:glue:us-east-2:481133585213:database/vigia_datalake_database_staging"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_only_databases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:GetTableVersion",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition"
+            ],
+            "Resource": [
+                "arn:aws:glue:us-east-2:481133585213:table/vigia_datalake_database_raw/*",
+                "arn:aws:glue:us-east-2:481133585213:database/vigia_datalake_database_raw",
+                "arn:aws:glue:us-east-2:481133585213:database/vigia_datalake_database_staging",
+                "arn:aws:glue:us-east-2:481133585213:database/global_temp"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Storage_all_buckets",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::vigia-data-lake-dl-artifacts-bucket-dev-a14b31",
+                "arn:aws:s3:::481133585213-vigia-datalake-staging"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_and_write_buckets",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::vigia-data-lake-dl-artifacts-bucket-dev-a14b31"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_only_buckets",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::481133585213-vigia-datalake-staging"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}

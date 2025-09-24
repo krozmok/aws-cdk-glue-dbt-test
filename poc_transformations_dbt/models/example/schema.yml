@@ -1,0 +1,47 @@
+
+version: 2
+
+models:
+  - name: "`modelo_financiero_test`"
+    description: "A starter dbt model"
+    columns:
+      - name: aud_esta
+      - name: aud_usua
+      - name: aud_ufac
+      - name: emp_codi
+      - name: cru_cont
+      - name: top_codi
+      - name: cru_nume
+      - name: cru_anop
+      - name: cru_mesp
+      - name: cru_diap
+      - name: cru_fech
+      - name: cru_desc
+      - name: arb_sucu
+      - name: arb_csuc
+      - name: mon_codi
+      - name: cru_vata
+      - name: cru_feta
+      - name: cli_codi
+      - name: dcl_codd
+      - name: cxc_cono
+      - name: cxc_cond
+      - name: cru_valo
+      - name: cru_esta
+      - name: mco_cont
+      - name: cru_auto
+      - name: cru_modu
+      - name: cru_ftad
+      - name: cru_ftac
+      - name: cru_vtad
+      - name: cru_vtac
+      - name: mpr_cont
+      - name: cru_nfec
+      - name: cas_cont
+      - name: img_cont
+      - name: cru_lean
+      - name: ingestion_ts
+      - name: year
+      - name: month
+      - name: day
+

@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: vigia_dl_db_raw
+    schema: vigia_datalake_database_raw
+    tables:
+      - name: "`modelo-financiero_ca_cruce`"

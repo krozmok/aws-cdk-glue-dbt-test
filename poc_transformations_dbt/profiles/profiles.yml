@@ -1,0 +1,16 @@
+connections:
+poc_transformations_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: glue
+      query-comment: poc
+      role_arn: "arn:aws:iam::481133585213:role/glue-dbt-role"
+      region: us-east-2
+      glue_version: "4.0"
+      workers: 2
+      worker_type: G.1X
+      schema: "vigia_datalake_database_raw"
+      session_provisioning_timeout_in_seconds: 240
+      location: "s3://vigia-data-lake-dl-artifacts-bucket-dev-a14b31"
+      conf: "spark.hadoop.hive.metastore.client.factory.class=com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
