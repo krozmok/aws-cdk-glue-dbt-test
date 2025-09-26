@@ -1,6 +1,13 @@
 
 # Welcome to your CDK Python project!
 
+
+# Requirements
+- Role Creations Permissions
+- Glue Interactive Sessions Policy to create resources
+- S3 Permissions
+- Glue Job Creations Permissions
+
 This is a blank project for CDK development with Python.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
