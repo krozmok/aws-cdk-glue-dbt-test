@@ -4,6 +4,12 @@ import logging
 import sys
 import boto3
 
+dbt_config_vars = {
+    "s3_bucket_target": "s3://vigia-data-lake-dl-artifacts-bucket-dev-a14b31"
+    ,"iam_role":""
+    ,"glue_db":""
+}
+
 logger = logging.getLogger()
 handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')

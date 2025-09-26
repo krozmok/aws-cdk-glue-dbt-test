@@ -1,0 +1,111 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadAndWriteDatabases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:BatchCreatePartition",
+                "glue:CreatePartitionIndex",
+                "glue:DeleteDatabase",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:DeleteTableVersion",
+                "glue:UpdateTable",
+                "glue:DeleteTable",
+                "glue:DeletePartitionIndex",
+                "glue:GetTableVersion",
+                "glue:UpdateColumnStatisticsForTable",
+                "glue:CreatePartition",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "glue:UpdateColumnStatisticsForPartition",
+                "glue:CreateDatabase",
+                "glue:BatchDeleteTableVersion",
+                "glue:BatchDeleteTable",
+                "glue:DeletePartition",
+                "glue:GetUserDefinedFunctions",
+                "lakeformation:ListResources",
+                "lakeformation:BatchGrantPermissions",
+                "lakeformation:ListPermissions",
+                "lakeformation:GetDataAccess",
+                "lakeformation:GrantPermissions",
+                "lakeformation:RevokePermissions",
+                "lakeformation:BatchRevokePermissions",
+                "lakeformation:AddLFTagsToResource",
+                "lakeformation:RemoveLFTagsFromResource",
+                "lakeformation:GetResourceLFTags",
+                "lakeformation:ListLFTags",
+                "lakeformation:GetLFTag"
+            ],
+            "Resource": [
+                "arn:aws:glue:us-east-1:481133585213:catalog",
+                "arn:aws:glue:us-east-1:481133585213:table/*/*",
+                "arn:aws:glue:us-east-1:481133585213:database/*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Readonlydatabases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:GetTableVersion",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "lakeformation:ListResources",
+                "lakeformation:ListPermissions"
+            ],
+            "Resource": [
+                "arn:aws:glue:us-east-1:481133585213:table/*/*",
+                "arn:aws:glue:us-east-1:481133585213:database/*",
+                "arn:aws:glue:us-east-1:481133585213:database/default",
+                "arn:aws:glue:us-east-1:481133585213:database/global_temp"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Storageallbuckets",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Readandwritebuckets",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Readonlybuckets",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: vigia_dl_db_raw
-    schema: vigia_datalake_database_raw
+  - name: source_raw
+    schema: "{{ var('source_glue_db', 'default') }}"
     tables:
-      - name: "`modelo-financiero_ca_cruce`"
+      - name: "country_codes"

@@ -33,19 +33,31 @@ class DbtGlueStack(Stack):
         
         
         # 2. IAM Role for Glue
-        glue_role = iam.Role(
+        glue_runner_role = iam.Role(
             self, "GlueRole",
             assumed_by=iam.ServicePrincipal("glue.amazonaws.com")
         )
-        dbt_bucket.grant_read_write(glue_role)
-        glue_role.add_managed_policy(
+        dbt_bucket.grant_read_write(glue_runner_role)
+        glue_runner_role.add_managed_policy(
             iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AWSGlueServiceRole")
         )
-
+        glue_runner_role.add_managed_policy(
+            iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AmazonS3FullAccess")
+        )
+        glue_runner_role.add_to_policy(
+            iam.PolicyStatement (
+                effect=iam.Effect.ALLOW,
+                actions=["iam:PassRole"],
+                resources=[f"{glue_runner_role.iam_role}"]
+            )
+        )
+        
+        # 2.1 IAM Role for Glue Interactive Session
+        
         # 3. Glue Job definition (dbt runner)
         glue_job = glue.CfnJob(
             self, "DbtGlueJob",
-            role=glue_role.role_arn,
+            role=glue_runner_role.role_arn,
             command=glue.CfnJob.JobCommandProperty(
                 name="pythonshell",  # or "pythonshell"
                 python_version="3",

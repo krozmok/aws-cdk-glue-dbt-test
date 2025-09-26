@@ -22,17 +22,12 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 vars:
-  worker_config:
-    small:
-      workers: 2
-      worker_type: G.1X
-    medium:
-      workers: 2
-      worker_type: G.2X
-    large:
-      workers: 5
-      worker_type: G.2X
-  application_size: small
+  source_glue_db: "vigia_datalake_database_raw"
+  target_glue_db: "vigia_datalake_database_staging"
+  target_s3_bucket: "s3://481133585213-vigia-datalake-staging/"
+  # iam_role: "arn:aws:iam::481133585213:role/glue-dbt-role"
+  # glue_db: "vigia_datalake_database_raw"
+  # s3_target_bucket: ""
 
 
 # Configuring models

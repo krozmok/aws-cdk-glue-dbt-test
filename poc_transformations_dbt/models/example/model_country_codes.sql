@@ -2,11 +2,10 @@
     config(
         materialized='incremental',
         incremental_strategy='insert_overwrite',
-        partition_by = ['year'],
+        partition_by = ['country_code'],
         file_format='parquet'
     ) 
 }}
 
-SELECT *
-FROM {{ source('vigia_dl_db_raw', '`modelo-financiero_ca_cruce`') }}
-WHERE year = '2017'
+SELECT *, current_timestamp as load_dts
+FROM {{ source('source_raw', 'country_codes') }}

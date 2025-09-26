@@ -1,0 +1,112 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Read_and_write_databases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:BatchCreatePartition",
+                "glue:CreatePartitionIndex",
+                "glue:DeleteDatabase",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:DeleteTableVersion",
+                "glue:UpdateTable",
+                "glue:DeleteTable",
+                "glue:DeletePartitionIndex",
+                "glue:GetTableVersion",
+                "glue:UpdateColumnStatisticsForTable",
+                "glue:CreatePartition",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "glue:UpdateColumnStatisticsForPartition",
+                "glue:CreateDatabase",
+                "glue:BatchDeleteTableVersion",
+                "glue:BatchDeleteTable",
+                "glue:DeletePartition",
+                "glue:GetUserDefinedFunctions",
+                "lakeformation:ListResources",
+                "lakeformation:BatchGrantPermissions",
+                "lakeformation:ListPermissions", 
+                "lakeformation:GetDataAccess",
+                "lakeformation:GrantPermissions",
+                "lakeformation:RevokePermissions",
+                "lakeformation:BatchRevokePermissions",
+                "lakeformation:AddLFTagsToResource",
+                "lakeformation:RemoveLFTagsFromResource",
+                "lakeformation:GetResourceLFTags",
+                "lakeformation:ListLFTags",
+                "lakeformation:GetLFTag"
+            ],
+            "Resource": [
+                "arn:aws:glue:<region>:<AWS Account>:catalog",
+                "arn:aws:glue:<region>:<AWS Account>:table/<dbt output database>/*",
+                "arn:aws:glue:<region>:<AWS Account>:database/<dbt output database>"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_only_databases",
+            "Action": [
+                "glue:SearchTables",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:GetTableVersion",
+                "glue:GetTables",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "lakeformation:ListResources",
+                "lakeformation:ListPermissions"
+            ],
+            "Resource": [
+                "arn:aws:glue:<region>:<AWS Account>:table/<dbt source database>/*",
+                "arn:aws:glue:<region>:<AWS Account>:database/<dbt source database>",
+                "arn:aws:glue:<region>:<AWS Account>:database/default",
+                "arn:aws:glue:<region>:<AWS Account>:database/global_temp"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Storage_all_buckets",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<dbt output bucket>",
+                "arn:aws:s3:::<dbt source bucket>"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_and_write_buckets",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<dbt output bucket>"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Sid": "Read_only_buckets",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<dbt source bucket>"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
